@@ -3,16 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mailappay Digital Labs: Engineering elite, high-performance web development and scalable digital infrastructure tailored for enterprise needs.">
-    
-    <meta property="og:title" content="Mailappay Digital Labs | Engineering Digital Excellence">
-    <meta property="og:description" content="Precision-engineered custom web solutions and digital architecture for modern businesses.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mailappay.com">
-    <meta name="twitter:card" content="summary_large_image">
-
     <title>Mailappay Digital Labs</title>
-    
     <style>
         :root {
             --bg-dark: #081b29;
@@ -21,18 +12,6 @@
             --text-main: #ffffff;
             --text-muted: #a0b8c9;
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --overlay-bg: rgba(8, 27, 41, 0.98);
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg-dark: #f4f7f6;
-                --bg-panel: #e2e8f0;
-                --accent-blue: #025b8f;
-                --text-main: #0a192f;
-                --text-muted: #4a5568;
-                --overlay-bg: rgba(244, 247, 246, 0.98);
-            }
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); }
@@ -42,21 +21,19 @@
             color: var(--text-main); 
             line-height: 1.6; 
             overflow-x: hidden;
-            /* Restored Initial Geometric Gradient */
-            background-image: linear-gradient(30deg, var(--bg-dark) 50%, var(--bg-panel) 50%);
-            background-attachment: fixed;
-            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .bg-elements {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(17, 41, 62, 0.8), transparent 50%),
+                        radial-gradient(circle at 85% 30%, rgba(122, 180, 212, 0.1), transparent 50%);
         }
 
         header { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 20px 5vw; position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(8, 27, 41, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--accent-blue);
-        }
-
-        @media (prefers-color-scheme: light) {
-            header { background: rgba(244, 247, 246, 0.8); }
+            background: rgba(8, 27, 41, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(122, 180, 212, 0.2);
         }
 
         .brand h1 { font-size: 1.6rem; letter-spacing: 2px; text-transform: uppercase; }
@@ -77,28 +54,57 @@
             justify-content: center;
         }
 
-        .open-btn:hover, .open-btn:focus { background-color: var(--accent-blue); color: #ffffff; outline: none; }
+        .open-btn:hover {
+            background-color: var(--accent-blue);
+            color: var(--bg-dark);
+        }
 
         .sidebar {
-            height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; right: 0;
-            background-color: var(--overlay-bg); overflow-x: hidden; transition: 0.4s;
-            padding-top: 80px; border-left: 2px solid var(--accent-blue); box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            height: 100%;
+            width: 0; 
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 0;
+            background-color: rgba(17, 41, 62, 0.98);
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 80px;
+            border-left: 2px solid var(--accent-blue);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.8);
         }
 
         .sidebar a {
-            padding: 15px 30px; text-decoration: none; font-size: 1.2rem; color: var(--text-main);
-            display: block; transition: 0.3s; border-bottom: 1px solid var(--accent-blue);
-            text-transform: uppercase; letter-spacing: 1px;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid rgba(122, 180, 212, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .sidebar a:hover, .sidebar a:focus { color: #ffffff; background-color: var(--accent-blue); outline: none; }
+        .sidebar a:hover {
+            color: var(--bg-dark);
+            background-color: var(--accent-blue);
+        }
 
         .sidebar .close-nav-btn {
-            position: absolute; top: 15px; right: 25px; font-size: 36px; border-bottom: none;
-            padding: 0; background: none; cursor: pointer; color: var(--text-main);
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 36px;
+            border-bottom: none;
+            padding: 0;
+            background: none;
         }
         
-        .sidebar .close-nav-btn:hover { background-color: transparent; color: var(--accent-blue); }
+        .sidebar .close-nav-btn:hover {
+            background-color: transparent;
+            color: var(--accent-blue);
+        }
 
         main { padding: 140px 5vw 80px; max-width: 1200px; margin: 0 auto; }
         
@@ -108,37 +114,50 @@
         .hero-section h2 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
         .hero-section p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; max-width: 700px; }
         
-        .section-title { font-size: 2.2rem; color: var(--text-main); margin-bottom: 30px; border-bottom: 3px solid var(--accent-blue); display: inline-block; padding-bottom: 10px; }
+        .section-title {
+            font-size: 2.2rem; color: var(--text-main); margin-bottom: 30px;
+            border-bottom: 3px solid var(--accent-blue); display: inline-block; padding-bottom: 10px;
+        }
 
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; margin-bottom: 80px;
+        }
         
-        .service-card { background: var(--bg-panel); border-radius: 8px; padding: 30px; border-top: 3px solid var(--accent-blue); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .service-card {
+            background: rgba(17, 41, 62, 0.6); border-radius: 8px; padding: 30px;
+            border-top: 3px solid var(--accent-blue); transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
         .service-card h4 { font-size: 1.3rem; color: var(--accent-blue); margin-bottom: 15px; }
 
-        .content-block { margin-bottom: 60px; padding: 40px; background: var(--bg-panel); border-radius: 8px; border-left: 4px solid var(--accent-blue);}
+        .content-block { margin-bottom: 60px; padding: 40px; background: rgba(8, 27, 41, 0.7); border-radius: 8px; border-left: 4px solid var(--accent-blue);}
         .content-block h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--text-main); }
         .content-block p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
         
-        @media (max-width: 768px) { .hero-section h2 { font-size: 2.5rem; } }
+        @media (max-width: 768px) {
+            .hero-section h2 { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
+    <div class="bg-elements"></div>
+
     <header>
         <div class="brand">
             <h1>Mailappay <span>Labs</span></h1>
         </div>
         <div class="header-actions">
-            <button class="open-btn" onclick="openNav()" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="rightSidebar">☰</button>
+            <button class="open-btn" onclick="openNav()" aria-label="Open Menu">☰</button>
         </div>
     </header>
 
-    <nav id="rightSidebar" class="sidebar" aria-hidden="true">
-        <button class="close-nav-btn" onclick="closeNav()" aria-label="Close Navigation Menu">&times;</button>
+    <div id="rightSidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-nav-btn" onclick="closeNav()">&times;</a>
         <a href="index.html">Main Interface</a>
         <a href="founder.html">Principal Architect</a>
         <a href="stories.html">Customer Stories</a>
-    </nav>
+    </div>
 
     <main>
         <section class="hero-section">
@@ -175,19 +194,12 @@
     </main>
 
     <script>
-        const sidebar = document.getElementById("rightSidebar");
-        const openBtn = document.querySelector(".open-btn");
-
         function openNav() {
-            sidebar.style.width = "300px";
-            sidebar.setAttribute("aria-hidden", "false");
-            openBtn.setAttribute("aria-expanded", "true");
+            document.getElementById("rightSidebar").style.width = "300px";
         }
 
         function closeNav() {
-            sidebar.style.width = "0";
-            sidebar.setAttribute("aria-hidden", "true");
-            openBtn.setAttribute("aria-expanded", "false");
+            document.getElementById("rightSidebar").style.width = "0";
         }
     </script>
 </body>
