@@ -14,7 +14,6 @@
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Global Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); }
         
         body { 
@@ -24,14 +23,12 @@
             overflow-x: hidden;
         }
 
-        /* Dynamic Background */
         .bg-elements {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
             background: radial-gradient(circle at 15% 50%, rgba(17, 41, 62, 0.8), transparent 50%),
                         radial-gradient(circle at 85% 30%, rgba(122, 180, 212, 0.1), transparent 50%);
         }
 
-        /* Header */
         header { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 20px 5vw; position: fixed; width: 100%; top: 0; z-index: 1000;
@@ -42,19 +39,19 @@
         .brand h1 { font-size: 1.6rem; letter-spacing: 2px; text-transform: uppercase; }
         .brand span { color: var(--accent-blue); }
 
-        /* Navigation Trigger Button (From Black Bird) */
         .open-btn {
             background-color: transparent;
             color: var(--text-main);
             border: 1px solid var(--accent-blue);
-            padding: 0.6rem 1.2rem;
-            font-size: 1rem;
-            font-weight: bold;
+            padding: 0.4rem 0.8rem;
+            font-size: 1.8rem; 
+            line-height: 1;
             border-radius: 4px;
             cursor: pointer;
             transition: 0.3s;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         .open-btn:hover {
@@ -62,10 +59,9 @@
             color: var(--bg-dark);
         }
 
-        /* Right Side Navigation Pane (From Black Bird) */
         .sidebar {
             height: 100%;
-            width: 0; /* Starts hidden */
+            width: 0; 
             position: fixed;
             z-index: 2000;
             top: 0;
@@ -110,7 +106,6 @@
             color: var(--accent-blue);
         }
 
-        /* Main Content Styling */
         main { padding: 140px 5vw 80px; max-width: 1200px; margin: 0 auto; }
         
         .hero-section { margin-bottom: 80px; animation: slideUp 1s ease forwards; }
@@ -124,7 +119,6 @@
             border-bottom: 3px solid var(--accent-blue); display: inline-block; padding-bottom: 10px;
         }
 
-        /* Services Grid */
         .grid-container {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px; margin-bottom: 80px;
@@ -137,7 +131,6 @@
         .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
         .service-card h4 { font-size: 1.3rem; color: var(--accent-blue); margin-bottom: 15px; }
 
-        /* Content Blocks */
         .content-block { margin-bottom: 60px; padding: 40px; background: rgba(8, 27, 41, 0.7); border-radius: 8px; border-left: 4px solid var(--accent-blue);}
         .content-block h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--text-main); }
         .content-block p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
@@ -155,7 +148,7 @@
             <h1>Mailappay <span>Labs</span></h1>
         </div>
         <div class="header-actions">
-            <button class="open-btn" onclick="openNav()">☰ Menu</button>
+            <button class="open-btn" onclick="openNav()" aria-label="Open Menu">☰</button>
         </div>
     </header>
 
@@ -201,14 +194,11 @@
     </main>
 
     <script>
-        // Sidebar Control
         function openNav() {
-            // Expands the sidebar width, making it slide in
             document.getElementById("rightSidebar").style.width = "300px";
         }
 
         function closeNav() {
-            // Collapses the sidebar width to 0, hiding it
             document.getElementById("rightSidebar").style.width = "0";
         }
     </script>
