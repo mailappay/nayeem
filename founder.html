@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Profile of Nayeemur Rahman M, Principal Architect at Mailappay Digital Labs.">
     <title>Principal Architect - Mailappay Labs</title>
+    
     <style>
         :root {
             --bg-dark: #081b29;
@@ -12,24 +14,35 @@
             --text-main: #ffffff;
             --text-muted: #a0b8c9;
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --overlay-bg: rgba(17, 41, 62, 0.98);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-dark: #f4f7f6;
+                --bg-panel: #ffffff;
+                --accent-blue: #025b8f;
+                --text-main: #0a192f;
+                --text-muted: #4a5568;
+                --overlay-bg: rgba(244, 247, 246, 0.98);
+            }
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
         
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        .bg-elements { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: radial-gradient(circle at 15% 50%, var(--bg-panel), transparent 50%), radial-gradient(circle at 85% 30%, var(--bg-panel), transparent 50%); opacity: 0.5; }
         
-        .bg-elements { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: radial-gradient(circle at 15% 50%, rgba(17, 41, 62, 0.8), transparent 50%), radial-gradient(circle at 85% 30%, rgba(122, 180, 212, 0.1), transparent 50%); }
-        
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(8, 27, 41, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(122, 180, 212, 0.2); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; position: fixed; width: 100%; top: 0; z-index: 1000; background: var(--bg-dark); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--accent-blue); }
         .brand h1 { font-size: 1.6rem; letter-spacing: 2px; text-transform: uppercase; } .brand span { color: var(--accent-blue); }
         
         .open-btn { background-color: transparent; color: var(--text-main); border: 1px solid var(--accent-blue); padding: 0.4rem 0.8rem; font-size: 1.8rem; line-height: 1; border-radius: 4px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
-        .open-btn:hover { background-color: var(--accent-blue); color: var(--bg-dark); }
+        .open-btn:hover, .open-btn:focus { background-color: var(--accent-blue); color: var(--bg-dark); outline: none; }
         
-        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; right: 0; background-color: rgba(17, 41, 62, 0.98); overflow-x: hidden; transition: 0.4s; padding-top: 80px; border-left: 2px solid var(--accent-blue); box-shadow: -5px 0 15px rgba(0,0,0,0.8); }
-        .sidebar a { padding: 15px 30px; text-decoration: none; font-size: 1.2rem; color: var(--text-main); display: block; transition: 0.3s; border-bottom: 1px solid rgba(122, 180, 212, 0.2); text-transform: uppercase; letter-spacing: 1px; }
-        .sidebar a:hover { color: var(--bg-dark); background-color: var(--accent-blue); }
-        .sidebar .close-nav-btn { position: absolute; top: 15px; right: 25px; font-size: 36px; border-bottom: none; padding: 0; background: none; }
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; right: 0; background-color: var(--overlay-bg); overflow-x: hidden; transition: 0.4s; padding-top: 80px; border-left: 2px solid var(--accent-blue); box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
+        .sidebar a { padding: 15px 30px; text-decoration: none; font-size: 1.2rem; color: var(--text-main); display: block; transition: 0.3s; border-bottom: 1px solid var(--accent-blue); text-transform: uppercase; letter-spacing: 1px; }
+        .sidebar a:hover, .sidebar a:focus { color: var(--bg-dark); background-color: var(--accent-blue); outline: none;}
+        .sidebar .close-nav-btn { position: absolute; top: 15px; right: 25px; font-size: 36px; border-bottom: none; padding: 0; background: none; color: var(--text-main); cursor: pointer; }
         .sidebar .close-nav-btn:hover { background-color: transparent; color: var(--accent-blue); }
 
         main { padding: 150px 5vw 50px; max-width: 1200px; margin: 0 auto; animation: fade-in 0.8s ease; }
@@ -38,27 +51,34 @@
         .content-header h2 { font-size: 3rem; margin-bottom: 5px; }
         .content-header h3 { color: var(--accent-blue); font-weight: 300; font-size: 1.5rem; margin-bottom: 30px; }
         
-        .interactive-card { background: rgba(17, 41, 62, 0.6); backdrop-filter: blur(5px); padding: 40px; border-radius: 10px; border-left: 4px solid var(--accent-blue); transition: transform 0.3s ease, box-shadow 0.3s ease; margin-top: 30px; }
-        .interactive-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .interactive-card { background: var(--bg-panel); padding: 40px; border-radius: 10px; border-top: 4px solid var(--accent-blue); transition: transform 0.3s ease, box-shadow 0.3s ease; margin-top: 30px; }
+        .interactive-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .interactive-card h4 { font-size: 1.5rem; margin-bottom: 15px; color: var(--accent-blue); }
+        
+        /* Form Variables */
+        .form-input { width: 100%; padding: 12px; margin-bottom: 15px; background: var(--bg-dark); border: 1px solid var(--text-muted); color: var(--text-main); border-radius: 4px; font-size: 1rem; }
+        .form-input:focus { border-color: var(--accent-blue); outline: none; }
+        .submit-btn { background-color: var(--accent-blue); color: var(--bg-panel); border: none; padding: 12px 25px; font-size: 1.1rem; cursor: pointer; border-radius: 4px; transition: 0.3s; font-weight: bold; }
+        .submit-btn:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
-    <div class="bg-elements"></div>
+    <div class="bg-elements" aria-hidden="true"></div>
 
     <header>
         <div class="brand"><h1>Mailappay <span>Labs</span></h1></div>
         <div class="header-actions">
-            <button class="open-btn" onclick="openNav()" aria-label="Open Menu">☰</button>
+            <button class="open-btn" onclick="openNav()" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="rightSidebar">☰</button>
         </div>
     </header>
 
-    <div id="rightSidebar" class="sidebar">
-        <a href="javascript:void(0)" class="close-nav-btn" onclick="closeNav()">&times;</a>
+    <nav id="rightSidebar" class="sidebar" aria-hidden="true">
+        <button class="close-nav-btn" onclick="closeNav()" aria-label="Close Navigation Menu">&times;</button>
         <a href="index.html">Main Interface</a>
         <a href="founder.html">Principal Architect</a>
         <a href="stories.html">Customer Stories</a>
-    </div>
+    </nav>
 
     <main>
         <div class="content-header">
@@ -67,22 +87,49 @@
             <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 800px;">Bringing an elite engineering discipline to web development. Specializing in the architecture of robust, high-availability digital environments.</p>
         </div>
 
-        <div class="interactive-card">
-            <h4>Professional Profile</h4>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">Experience in complex data paths and networking protocols ensures web solutions are built with secure, optimized, and scalable foundations.</p>
-            <p><strong>Email:</strong> nayeem6862@gmail.com</p>
-            <p><strong>Mobile:</strong> +91 8754907804</p>
-            <p><strong>LinkedIn:</strong> linkedIn.com/mailappay</p>
-            <p><strong>Website:</strong> mailappay.com</p>
+        <div class="grid-container">
+            <div class="interactive-card">
+                <h4>Professional Profile</h4>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Experience in complex data paths and networking protocols ensures web solutions are built with secure, optimized, and scalable foundations.</p>
+                <p><strong>Email:</strong> nayeem6862@gmail.com</p>
+                <p><strong>Mobile:</strong> +91 8754907804</p>
+                <p><strong>LinkedIn:</strong> linkedIn.com/mailappay</p>
+                <p><strong>Website:</strong> mailappay.com</p>
+            </div>
+
+            <div class="interactive-card">
+                <h4>Direct Connection Node</h4>
+                <!-- Replace 'YOUR_FORM_ID' with endpoint ID from formspree.io to activate routing -->
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <label for="name" class="visually-hidden" style="display:none;">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Originating Entity Name" required>
+                    
+                    <label for="email" class="visually-hidden" style="display:none;">Email</label>
+                    <input type="email" id="email" name="_replyto" class="form-input" placeholder="Return Email Address" required>
+                    
+                    <label for="message" class="visually-hidden" style="display:none;">Message</label>
+                    <textarea id="message" name="message" class="form-input" placeholder="Operational Parameters / Request" rows="4" required></textarea>
+                    
+                    <button type="submit" class="submit-btn">Transmit Data</button>
+                </form>
+            </div>
         </div>
     </main>
 
     <script>
+        const sidebar = document.getElementById("rightSidebar");
+        const openBtn = document.querySelector(".open-btn");
+
         function openNav() {
-            document.getElementById("rightSidebar").style.width = "300px";
+            sidebar.style.width = "300px";
+            sidebar.setAttribute("aria-hidden", "false");
+            openBtn.setAttribute("aria-expanded", "true");
         }
+
         function closeNav() {
-            document.getElementById("rightSidebar").style.width = "0";
+            sidebar.style.width = "0";
+            sidebar.setAttribute("aria-hidden", "true");
+            openBtn.setAttribute("aria-expanded", "false");
         }
     </script>
 </body>
