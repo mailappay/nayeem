@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal Architect - Mailappay Digital Labs</title>
+    <style>
+        :root { --bg-dark: #081b29; --bg-panel: #11293e; --accent-blue: #7ab4d4; --text-main: #ffffff; --text-muted: #a0b8c9; --font-stack: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; background-image: linear-gradient(30deg, var(--bg-dark) 50%, var(--bg-panel) 50%); background-attachment: fixed; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: rgba(8, 27, 41, 0.95); border-bottom: 2px solid var(--accent-blue); position: sticky; top: 0; z-index: 1000; }
+        .brand-container { display: flex; align-items: center; gap: 15px; }
+        .logo-placeholder { width: 40px; height: 40px; background-color: var(--accent-blue); transform: rotate(45deg); display: flex; align-items: center; justify-content: center; }
+        .brand-text h1 { font-size: 1.2rem; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; transition: color 0.3s; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-blue); }
+        
+        .page-section { padding: 80px 50px; max-width: 1200px; margin: 0 auto; min-height: 80vh; animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h2 { font-size: 3rem; margin-bottom: 10px; }
+        h3 { color: var(--accent-blue); font-size: 1.5rem; margin-bottom: 30px; font-weight: 400; }
+        .accent-line { width: 100px; height: 4px; background-color: var(--accent-blue); margin-bottom: 30px; }
+        p { color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin-bottom: 20px; }
+        
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .data-card { background-color: var(--bg-panel); padding: 30px; border-left: 4px solid var(--accent-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .data-card h4 { color: var(--text-main); font-size: 1.2rem; margin-bottom: 15px; }
+        
+        footer { background-color: #05121c; padding: 40px 50px; text-align: center; border-top: 1px solid var(--bg-panel); }
+        .contact-grid { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="brand-container">
+            <div class="logo-placeholder"></div>
+            <div class="brand-text">
+                <h1>Mailappay Digital Labs</h1>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Main Interface</a>
+            <a href="founder.html" class="active">Principal Architect</a>
+            <a href="stories.html">Customer Data</a>
+        </div>
+    </nav>
+
+    <section class="page-section">
+        <h2>Nayeemur Rahman M</h2>
+        <div class="accent-line"></div>
+        <h3>Principal Architect / Proprietor</h3>
+        <p>Bringing an elite engineering discipline to web development. Specializing in the architecture of robust, high-availability digital environments. Experience in complex data paths and networking protocols ensures web solutions are built with secure, optimized, and scalable foundations.</p>
+        
+        <div class="card-grid">
+            <div class="data-card">
+                <h4>Core Competencies</h4>
+                <p>Web Development, Digital Architecture, Scalable Infrastructure, Performance Optimization.</p>
+            </div>
+            <div class="data-card">
+                <h4>Operational Objective</h4>
+                <p>To translate complex technical requirements into streamlined, user-centric web applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contact-grid">
+            <span>Mobile: [Data Pending Input]</span>
+            <span>Email: [Data Pending Input]</span>
+            <span>Web: mailappay.com</span>
+            <span>LinkedIn: linkedIn.com/mailappay</span>
+        </div>
+        <p style="font-size: 0.9rem;">&copy; 2026 Mailappay Digital Labs.</p>
+    </footer>
+
+</body>
+</html>
+
