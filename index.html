@@ -14,6 +14,7 @@
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Global Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); }
         
         body { 
@@ -30,10 +31,10 @@
                         radial-gradient(circle at 85% 30%, rgba(122, 180, 212, 0.1), transparent 50%);
         }
 
-        /* Header & Horizontal Navigation */
+        /* Header */
         header { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 25px 5vw; position: fixed; width: 100%; top: 0; z-index: 1000;
+            padding: 20px 5vw; position: fixed; width: 100%; top: 0; z-index: 1000;
             background: rgba(8, 27, 41, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(122, 180, 212, 0.2);
         }
@@ -41,35 +42,72 @@
         .brand h1 { font-size: 1.6rem; letter-spacing: 2px; text-transform: uppercase; }
         .brand span { color: var(--accent-blue); }
 
-        /* The Three Horizontal Options */
-        .nav-links {
+        /* Navigation Trigger Button (From Black Bird) */
+        .open-btn {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--accent-blue);
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
             display: flex;
-            gap: 40px;
             align-items: center;
         }
 
-        .nav-links a {
-            font-size: 1.1rem; 
-            color: var(--text-main); 
+        .open-btn:hover {
+            background-color: var(--accent-blue);
+            color: var(--bg-dark);
+        }
+
+        /* Right Side Navigation Pane (From Black Bird) */
+        .sidebar {
+            height: 100%;
+            width: 0; /* Starts hidden */
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 0;
+            background-color: rgba(17, 41, 62, 0.98);
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 80px;
+            border-left: 2px solid var(--accent-blue);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.8);
+        }
+
+        .sidebar a {
+            padding: 15px 30px;
             text-decoration: none;
-            text-transform: uppercase; 
+            font-size: 1.2rem;
+            color: var(--text-main);
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid rgba(122, 180, 212, 0.2);
+            text-transform: uppercase;
             letter-spacing: 1px;
-            position: relative; 
-            transition: color 0.3s;
-            font-weight: bold;
+        }
+
+        .sidebar a:hover {
+            color: var(--bg-dark);
+            background-color: var(--accent-blue);
+        }
+
+        .sidebar .close-nav-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 36px;
+            border-bottom: none;
+            padding: 0;
+            background: none;
         }
         
-        .nav-links a:hover, .nav-links a.active { 
-            color: var(--accent-blue); 
-        }
-        
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 3px;
-            bottom: -6px; left: 0; background-color: var(--accent-blue); transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after, .nav-links a.active::after { 
-            width: 100%; 
+        .sidebar .close-nav-btn:hover {
+            background-color: transparent;
+            color: var(--accent-blue);
         }
 
         /* Main Content Styling */
@@ -104,13 +142,8 @@
         .content-block h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--text-main); }
         .content-block p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
         
-        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 20px; padding: 20px 5vw; }
-            .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
-            .nav-links a { font-size: 0.9rem; }
             .hero-section h2 { font-size: 2.5rem; }
-            main { padding-top: 180px; }
         }
     </style>
 </head>
@@ -121,12 +154,17 @@
         <div class="brand">
             <h1>Mailappay <span>Labs</span></h1>
         </div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Main Interface</a>
-            <a href="founder.html">Principal Architect</a>
-            <a href="stories.html">Customer Stories</a>
+        <div class="header-actions">
+            <button class="open-btn" onclick="openNav()">☰ Menu</button>
         </div>
     </header>
+
+    <div id="rightSidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-nav-btn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Main Interface</a>
+        <a href="founder.html">Principal Architect</a>
+        <a href="stories.html">Customer Stories</a>
+    </div>
 
     <main>
         <section class="hero-section">
@@ -162,5 +200,17 @@
         </div>
     </main>
 
+    <script>
+        // Sidebar Control
+        function openNav() {
+            // Expands the sidebar width, making it slide in
+            document.getElementById("rightSidebar").style.width = "300px";
+        }
+
+        function closeNav() {
+            // Collapses the sidebar width to 0, hiding it
+            document.getElementById("rightSidebar").style.width = "0";
+        }
+    </script>
 </body>
 </html>
