@@ -13,64 +13,140 @@
             --text-muted: #a0b8c9;
             --font-stack: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; background-image: linear-gradient(30deg, var(--bg-dark) 50%, var(--bg-panel) 50%); background-attachment: fixed; }
         
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: rgba(8, 27, 41, 0.95); border-bottom: 2px solid var(--accent-blue); position: sticky; top: 0; z-index: 1000; }
-        .brand-container { display: flex; align-items: center; gap: 15px; }
-        .logo-placeholder { width: 40px; height: 40px; background-color: var(--accent-blue); transform: rotate(45deg); display: flex; align-items: center; justify-content: center; }
-        .brand-text h1 { font-size: 1.2rem; letter-spacing: 1px; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; transition: color 0.3s; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-blue); }
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        /* Dynamic Background */
+        .bg-elements {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(17, 41, 62, 0.8), transparent 50%),
+                        radial-gradient(circle at 85% 30%, rgba(122, 180, 212, 0.1), transparent 50%);
+        }
+
+        /* Header & Interactive Menu Button */
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 30px 5vw; position: fixed; width: 100%; top: 0; z-index: 100;
+            background: rgba(8, 27, 41, 0.8); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(122, 180, 212, 0.2);
+        }
+
+        .brand h1 { font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
+        .brand span { color: var(--accent-blue); }
+
+        .menu-btn {
+            background: none; border: none; cursor: pointer;
+            width: 35px; height: 25px; display: flex; flex-direction: column; justify-content: space-between;
+            z-index: 1000;
+        }
         
-        .page-section { padding: 80px 50px; max-width: 1200px; margin: 0 auto; min-height: 80vh; animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .menu-btn span {
+            display: block; width: 100%; height: 3px; background-color: var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+
+        /* Full-Screen Overlay Menu */
+        .nav-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(8, 27, 41, 0.98);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.5s ease; z-index: 900;
+        }
+
+        .nav-overlay.active { opacity: 1; visibility: visible; }
         
-        h2 { font-size: 3rem; margin-bottom: 10px; }
-        h3 { color: var(--accent-blue); font-size: 1.5rem; margin-bottom: 30px; font-weight: 400; }
-        .accent-line { width: 100px; height: 4px; background-color: var(--accent-blue); margin-bottom: 30px; }
-        p { color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin-bottom: 20px; }
-        .slogan { font-style: italic; font-size: 2rem; color: var(--accent-blue); margin-top: 40px; }
+        .nav-overlay a {
+            font-size: 2.5rem; color: var(--text-main); text-decoration: none;
+            margin: 20px 0; text-transform: uppercase; letter-spacing: 3px;
+            position: relative; transition: color 0.3s;
+            transform: translateY(20px); opacity: 0;
+        }
+
+        .nav-overlay.active a { transform: translateY(0); opacity: 1; transition: all 0.5s ease 0.2s; }
+        .nav-overlay.active a:nth-child(2) { transition-delay: 0.3s; }
         
-        footer { background-color: #05121c; padding: 40px 50px; text-align: center; border-top: 1px solid var(--bg-panel); }
-        .contact-grid { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; color: var(--text-muted); }
+        .nav-overlay a:hover { color: var(--accent-blue); }
+        .nav-overlay a::after {
+            content: ''; position: absolute; width: 0; height: 3px;
+            bottom: -5px; left: 0; background-color: var(--accent-blue); transition: width 0.3s ease;
+        }
+        .nav-overlay a:hover::after { width: 100%; }
+
+        /* Main Content Styling */
+        main { padding: 150px 5vw 50px; min-height: 80vh; display: flex; align-items: center; }
+        
+        .hero-content { max-width: 800px; animation: slideUp 1s ease forwards; opacity: 0; transform: translateY(30px); }
+        
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+        .hero-content h2 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
+        
+        .btn-primary {
+            display: inline-block; padding: 15px 35px; border: 2px solid var(--accent-blue);
+            color: var(--accent-blue); text-decoration: none; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease;
+            background: transparent;
+        }
+        .btn-primary:hover { background: var(--accent-blue); color: var(--bg-dark); box-shadow: 0 0 20px rgba(122, 180, 212, 0.4); }
+
     </style>
 </head>
 <body>
+    <div class="bg-elements"></div>
 
-    <nav>
-        <div class="brand-container">
-            <div class="logo-placeholder"></div>
-            <div class="brand-text">
-                <h1>Mailappay Digital Labs</h1>
-            </div>
+    <header>
+        <div class="brand">
+            <h1>Mailappay <span>Labs</span></h1>
         </div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Main Interface</a>
-            <a href="founder.html">Principal Architect</a>
-            <a href="stories.html">Customer Data</a>
+        <button class="menu-btn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="nav-overlay" id="navMenu">
+        <a href="index.html">Main Interface</a>
+        <a href="founder.html">Principal Architect</a>
+        <a href="stories.html">Customer Stories</a>
+    </div>
+
+    <main>
+        <div class="hero-content">
+            <h3 style="color: var(--accent-blue); letter-spacing: 2px; margin-bottom: 10px;">THINK DIGITAL. THINK MAILAPPAY.</h3>
+            <h2>Engineering Digital<br>Excellence.</h2>
+            <p>We execute high-performance web development and scalable digital infrastructure tailored to your exact specifications.</p>
+            <a href="stories.html" class="btn-primary">View Our Work</a>
         </div>
-    </nav>
+    </main>
 
-    <section class="page-section">
-        <h2>Mailappay Digital Labs</h2>
-        <div class="accent-line"></div>
-        <h3>Engineering Digital Solutions</h3>
-        <p>Executing high-performance web development and scalable digital infrastructure. Delivering precision-engineered platforms tailored to client specifications.</p>
-        <div class="slogan">Think Digital Think Mailappay</div>
-    </section>
+    <script>
+        // Interactive Menu Logic
+        const menuBtn = document.querySelector('.menu-btn');
+        const navMenu = document.getElementById('navMenu');
+        let menuOpen = false;
 
-    <footer>
-        <div class="contact-grid">
-            <span>Mobile: [Data Pending Input]</span>
-            <span>Email: [Data Pending Input]</span>
-            <span>Web: mailappay.com</span>
-            <span>LinkedIn: linkedIn.com/mailappay</span>
-        </div>
-        <p style="font-size: 0.9rem;">&copy; 2026 Mailappay Digital Labs.</p>
-    </footer>
-
+        function toggleMenu() {
+            if(!menuOpen) {
+                navMenu.classList.add('active');
+                menuBtn.children[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
+                menuBtn.children[1].style.opacity = '0';
+                menuBtn.children[2].style.transform = 'rotate(-45deg) translate(7px, -8px)';
+                menuOpen = true;
+            } else {
+                navMenu.classList.remove('active');
+                menuBtn.children[0].style.transform = 'none';
+                menuBtn.children[1].style.opacity = '1';
+                menuBtn.children[2].style.transform = 'none';
+                menuOpen = false;
+            }
+        }
+    </script>
 </body>
 </html>
-
